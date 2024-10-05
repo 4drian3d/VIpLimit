@@ -1,4 +1,4 @@
-package io.github._4drian3d.someplugin;
+package io.github._4drian3d.viplimit;
 
 public final class Constants {
 	public static final String VERSION = "{{ version }}";

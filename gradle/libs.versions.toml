@@ -7,22 +7,15 @@ velocity = "3.4.0-SNAPSHOT"
 
 # Gradle Plugins
 blossom = "2.1.0"
-shadow = "8.3.3"
 runvelocity = "2.3.1"
-
-# Utility Libraries
-bstats = "3.0.2"
 
 [libraries]
 
 # Compile Only Dependencies
 velocity = { group = "com.velocitypowered", name = "velocity-api", version.ref = "velocity" }
 
-bstats = { module = "org.bstats:bstats-velocity", version.ref = "bstats" }
-
 [plugins]
 
 blossom = { id = "net.kyori.blossom", version.ref = "blossom" }
-shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 runvelocity = { id = "xyz.jpenilla.run-velocity", version.ref = "runvelocity" }
 idea-ext = { id = "org.jetbrains.gradle.plugin.idea-ext", version = "1.1.9" }
