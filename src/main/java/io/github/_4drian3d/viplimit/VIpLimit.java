@@ -13,8 +13,8 @@ import org.slf4j.Logger;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Plugin(
         id = "viplimit",
@@ -38,7 +38,7 @@ public final class VIpLimit {
     try {
       Configuration.createIfNotExists(dataFolder);
       final Configuration configuration = Configuration.load(dataFolder);
-      final Map<InetAddress, Integer> limitMap = new HashMap<>();
+      final Map<InetAddress, Integer> limitMap = new ConcurrentHashMap<>();
       injector = injector.createChildInjector(new ControlModule(limitMap, configuration));
       Listener.registerListeners(injector);
     } catch (IOException e) {
