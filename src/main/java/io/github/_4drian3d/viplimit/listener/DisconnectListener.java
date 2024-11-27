@@ -32,7 +32,7 @@ public class DisconnectListener implements Listener<DisconnectEvent> {
       final InetAddress remoteAddress = event.getPlayer().getRemoteAddress().getAddress();
       limitMap.compute(remoteAddress, (ad, online) -> {
         if (online == null || online <= 1) {
-          return online;
+          return null;
         }
         return online - 1;
       });

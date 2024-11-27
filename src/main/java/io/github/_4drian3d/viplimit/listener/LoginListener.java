@@ -35,7 +35,7 @@ public final class LoginListener implements Listener<LoginEvent> {
           continuation.resume();
           return 1;
         }
-        if (configuration.playerLimitByIp() >= value) {
+        if (configuration.playerLimitByIp() <= value) {
           event.getPlayer().disconnect(configuration.limitReachedMessage());
           continuation.resume();
           return value;
