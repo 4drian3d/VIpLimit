@@ -8,7 +8,7 @@ import com.velocitypowered.api.proxy.Player;
 import io.github._4drian3d.viplimit.Configuration;
 import io.github._4drian3d.viplimit.VIpLimit;
 
-import java.net.InetSocketAddress;
+import java.net.InetAddress;
 import java.util.Map;
 
 public final class LoginListener implements Listener<LoginEvent> {
@@ -19,7 +19,7 @@ public final class LoginListener implements Listener<LoginEvent> {
   @Inject
   private Configuration configuration;
   @Inject
-  private Map<InetSocketAddress, Integer> limitMap;
+  private Map<InetAddress, Integer> limitMap;
 
   @Override
   public void register() {
@@ -30,7 +30,7 @@ public final class LoginListener implements Listener<LoginEvent> {
   public EventTask executeAsync(LoginEvent event) {
     return EventTask.withContinuation(continuation -> {
       final Player player = event.getPlayer();
-      limitMap.compute(player.getRemoteAddress(), (address, value) -> {
+      limitMap.compute(player.getRemoteAddress().getAddress(), (address, value) -> {
         if (value == null) {
           continuation.resume();
           return 1;

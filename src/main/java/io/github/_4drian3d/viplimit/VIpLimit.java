@@ -11,7 +11,7 @@ import io.github._4drian3d.viplimit.listener.Listener;
 import org.slf4j.Logger;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
+import java.net.InetAddress;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +38,7 @@ public final class VIpLimit {
     try {
       Configuration.createIfNotExists(dataFolder);
       final Configuration configuration = Configuration.load(dataFolder);
-      final Map<InetSocketAddress, Integer> limitMap = new HashMap<>();
+      final Map<InetAddress, Integer> limitMap = new HashMap<>();
       injector = injector.createChildInjector(new ControlModule(limitMap, configuration));
       Listener.registerListeners(injector);
     } catch (IOException e) {
