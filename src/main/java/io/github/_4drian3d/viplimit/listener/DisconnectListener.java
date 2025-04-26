@@ -7,7 +7,7 @@ import com.velocitypowered.api.event.connection.DisconnectEvent;
 import io.github._4drian3d.viplimit.VIpLimit;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-import java.net.InetSocketAddress;
+import java.net.InetAddress;
 import java.util.Map;
 
 public class DisconnectListener implements Listener<DisconnectEvent> {
@@ -16,7 +16,7 @@ public class DisconnectListener implements Listener<DisconnectEvent> {
   @Inject
   private VIpLimit plugin;
   @Inject
-  private Map<InetSocketAddress, Integer> limitMap;
+  private Map<InetAddress, Integer> limitMap;
 
   @Override
   public void register() {
@@ -29,10 +29,10 @@ public class DisconnectListener implements Listener<DisconnectEvent> {
       if (event.getLoginStatus() == DisconnectEvent.LoginStatus.CONFLICTING_LOGIN) {
         return;
       }
-      final InetSocketAddress remoteAddress = event.getPlayer().getRemoteAddress();
+      final InetAddress remoteAddress = event.getPlayer().getRemoteAddress().getAddress();
       limitMap.compute(remoteAddress, (ad, online) -> {
         if (online == null || online <= 1) {
-          return online;
+          return null;
         }
         return online - 1;
       });
